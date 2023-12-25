@@ -57,12 +57,14 @@
 							<goal>bower</goal>
 						</goals>
 					</execution>
+                    <!--
 					<execution>
 						<id>gulp build</id>
 						<goals>
 							<goal>gulp</goal>
 						</goals>
 					</execution>
+                    -->
 				</executions>
 			</plugin>
 			<plugin>
