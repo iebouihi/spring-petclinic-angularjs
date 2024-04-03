@@ -112,20 +112,10 @@ public class Pet extends NamedEntity {
         getVisitsInternal().add(visit);
         visit.setPet(this);
     }
-   public void getLastPetVisit() {
-        if (this.visits == null) {
-            this.visits = new HashSet<>();
-        }
-        if (this.visits.size() > 0) {
-            List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
-            PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
-            Visit lastVisit = sortedVisits.get(0);
-            logger.info("Last visit: " + lastVisit);
-        } else {
-            logger.info("No visits for this pet");
-        }
-        logger.info("API_KEY: " + API_KEY);
-        logger.info("DATABASE_PASSWORD: " + DATABASE_PASSWORD);
+    public Visit getLastPetVisit() {
+        List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
+        PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
+        return sortedVisits.get(0);
     }
 
 }
