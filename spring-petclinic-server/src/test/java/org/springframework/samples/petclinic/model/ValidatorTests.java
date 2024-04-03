@@ -44,4 +44,5 @@ public class ValidatorTests {
         assertThat(violation.getMessage()).isEqualTo("must not be empty");
     }
 
+
 }
