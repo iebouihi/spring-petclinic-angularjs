@@ -89,6 +89,16 @@ public class PetResource extends AbstractResourceController {
         return new PetDetails(pet);
     }
 
+    //generate delete Pet
+    @DeleteMapping("/owners/*/pets/{petId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePet(@PathVariable("petId") int petId) {
+        Pet pet = this.clinicService.findPetById(petId);
+       // this.clinicService.deletePet(pet);
+    }
+
+
+
     static class PetRequest {
         int id;
         @JsonFormat(pattern = "yyyy-MM-dd")

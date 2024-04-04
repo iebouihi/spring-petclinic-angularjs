@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
+
 /**
  * Simple business object representing a pet.
  *
@@ -112,6 +113,7 @@ public class Pet extends NamedEntity {
         getVisitsInternal().add(visit);
         visit.setPet(this);
     }
+
     public Visit getLastPetVisit() {
         List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
         PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
