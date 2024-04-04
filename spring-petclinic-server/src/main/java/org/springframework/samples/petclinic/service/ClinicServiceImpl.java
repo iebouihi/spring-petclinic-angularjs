@@ -100,11 +100,4 @@ public class ClinicServiceImpl implements ClinicService {
         return vetRepository.findAll();
     }
 
-    @Override
-    public void deletePet(Pet pet) {
-        petRepository.delete(pet);
-        throw new UnsupportedOperationException("Unimplemented method 'deletePet'");
-    }
-
-
 }
