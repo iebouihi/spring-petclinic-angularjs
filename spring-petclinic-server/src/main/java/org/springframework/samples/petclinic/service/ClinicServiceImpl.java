@@ -100,4 +100,31 @@ public class ClinicServiceImpl implements ClinicService {
         return vetRepository.findAll();
     }
 
+    @Override
+    public Visit getLastVisit(Pet pet) {
+      Visit lastVisit = null;
+        Collection<Visit> visits = pet.getVisits();
+        if (visits.size() > 0) {
+            lastVisit = visits.iterator().next();
+            for (Visit visit : visits) {
+                if (visit.getDate().after(lastVisit.getDate())) {
+                    lastVisit = visit;
+                }
+            }
+        }
+        return lastVisit;
+
+    }
+
+    @Override
+    public int getAverageVisitDuration(Pet pet) {
+        Collection<Visit> visits = pet.getVisits();
+        int sum = 0;
+        for (Visit visit : visits) {
+            sum += visit.getDuration();
+        }
+        return sum / visits.size();
+    }
+    
+
 }

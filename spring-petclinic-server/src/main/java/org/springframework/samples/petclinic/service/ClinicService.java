@@ -47,4 +47,7 @@ public interface ClinicService {
 
     Collection<Owner> findAll();
 
+    Visit getLastVisit(Pet pet);
+    int getAverageVisitDuration(Pet pet);
+
 }

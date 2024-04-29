@@ -45,6 +45,9 @@ public class Visit extends BaseEntity {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
+    @Column(name="visit_duration")
+    private int duration;
+
     /**
      * Holds value of property description.
      */
@@ -60,6 +63,10 @@ public class Visit extends BaseEntity {
     @JsonIgnore
     private Pet pet;
 
+    // Getters and setters
+    public int getDuration() {
+        return duration;
+    }
 
     /**
      * Creates a new instance of Visit for the current date
