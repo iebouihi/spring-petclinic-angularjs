@@ -125,6 +125,4 @@ public class ClinicServiceImpl implements ClinicService {
         }
         return sum / visits.size();
     }
-    
-
 }
