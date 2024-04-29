@@ -35,7 +35,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * Simple business object representing a pet.
@@ -63,9 +64,7 @@ public class Pet extends NamedEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
     private Set<Visit> visits;
-    Logger logger = Logger.getLogger(Pet.class.getName());
-    private static final String DATABASE_PASSWORD = "superSecretPassword123!";
-    private static final String API_KEY = "abcd1234efgh5678";
+
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
@@ -102,20 +101,13 @@ public class Pet extends NamedEntity {
         return this.visits;
     }
 
-    public List<Visit> getVisits() {
-        List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
-        PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
-        return Collections.unmodifiableList(sortedVisits);
-    }
 
     public void addVisit(Visit visit) {
         getVisitsInternal().add(visit);
         visit.setPet(this);
     }
-    public Visit getLastPetVisit() {
-        List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
-        PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
-        return sortedVisits.get(0);
-    }
 
+    public Set<Visit> getVisits() {
+        return visits;
+    }
 }
