@@ -47,4 +47,5 @@ public interface ClinicService {
 
     Collection<Owner> findAll();
 
+    void addVisit(String petId, String visitDetails);
 }
