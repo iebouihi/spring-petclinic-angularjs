@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.*;
@@ -41,6 +43,7 @@ public class ClinicServiceImpl implements ClinicService {
     private final VetRepository vetRepository;
     private final OwnerRepository ownerRepository;
     private final VisitRepository visitRepository;
+    private final static  Logger logger = LoggerFactory.getLogger(ClinicServiceImpl.class);
 
     @Autowired
     public ClinicServiceImpl(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository) {
@@ -98,6 +101,22 @@ public class ClinicServiceImpl implements ClinicService {
     @CacheResult(cacheName = "vets")
     public Collection<Vet> findVets() throws DataAccessException {
         return vetRepository.findAll();
+    }
+
+    @Override
+    public void addVisit(String petId, String visitDetails) {
+        try {
+
+            Pet pet = petRepository.findById(Integer.parseInt(petId));
+            Visit visit = new Visit();
+            visit.setDescription(visitDetails);
+            visit.setPet(pet);
+            visitRepository.save(visit);
+
+        } catch (Exception e) {
+           logger.error("An error has occurred l");
+            throw new RuntimeException(e);
+        }
     }
 
 
